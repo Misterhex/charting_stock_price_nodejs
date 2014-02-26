@@ -1,5 +1,10 @@
-extends layout
+doctype html
+html(lang="en")
+	head
+	body
+		div
+			form(action='/pricechart',method='post')
+				key Ticker
+					input(type="text", name="ticker")
 
-block content
-  h1= title
-  p Welcome to #{title}
+				input(type="submit", value="Submit")

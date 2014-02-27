@@ -12,30 +12,23 @@ $(function() {
 		$.post( "/pricechart", { ticker: ticker } )
 		.done(function( data ) {
 			var dataSource = JSON.parse(data);
-			console.log(dataSource)
-			
+			console.log(dataSource[0]);
+
 			$("#chartContainer").dxChart({
 		        dataSource: dataSource,
-		        commonSeriesSettings: {
-		            argumentField: 'date'
+		        series: { type: 'stock' },
+		        title: {
+		            text: 'Stock Price'
 		        },
-		        series: [
-		            { valueField: 'open', name: 'open' },
-		            // { valueField: 'high', name: 'high' },
-		            // { valueField: 'low', name: 'low' },
-		            // { valueField: 'close', name: 'close' },
-		            // { valueField: 'volume', name: 'volume' },
-		            // { valueField: 'adjClose', name: 'adjClose' },
-		        ],
 		        tooltip: {
 		            enabled: true
 		        },
-		        title: {
-		            text: ticker.toUpperCase() +' Historical Price From Yahoo Finance' 
-		        },
-		        legend: {
-		            verticalAlignment: 'bottom',
-		            horizontalAlignment: 'center'
+		        argumentAxis: {
+		            label: {
+		                format: 'dd/MM'
+		            }
+		        },commonAxisSettings: {
+		            label: { rotationAngle: 45 }
 		        }
 		    });
 

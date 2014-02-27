@@ -63,20 +63,20 @@ app.post("/pricechart", function(req, res) {
 				csv().from.string(body)
 				.to
 				.array(function (data) {
-					var mapped = _.map(data, function(row) { 
+					var mapped = _.map(data, function(row) {
+						var date = moment(row[0]);
+
 						var day =
 						{
-							date: row[0], 
-							open: row[1], 
-							high: row[2], 
-							low: row[3], 
-							close: row[4],
-							volume: row[5],
-							adjClose: row[6],
+							date: date,
+							low: parseInt(row[3]),  
+							high: parseInt(row[2]), 
+							open: parseInt(row[1]), 
+							close: parseInt(row[4])
 						};
 						return day;
 					});
-					mapped = mapped.splice(1,mapped.length-1).reverse();
+					mapped = mapped.splice(1,mapped.length-1);
 					callback(mapped);
 				});
 			}
@@ -84,7 +84,7 @@ app.post("/pricechart", function(req, res) {
 	};
 
 	getJsonHistoricalData(req.body.ticker, function(data) {
-		console.log(JSON.stringify(data))
+		console.log(JSON.stringify(data));
   		res.send(JSON.stringify(data));
 	});
   });

@@ -1,13 +1,21 @@
 doctype html
 html(lang="en")
 	head
-	body
-		div
-			input#ticker(type="text", name="ticker")
-			div#chartContainer(style="height:80%; max-width:80%; margin: 0 auto")
+		meta(charset="utf-8")
+		meta(http-equiv="X-UA-Compatible",content="IE=edge")
+		meta(name="viewport",content="width=device-width, initial-scale=1")
+		link(rel="stylesheet",href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
+		<title>Stock Price Charts</title>		
+	body(style="height:900px;")
+		div.container(style="height:95%; max-width:95%; margin-top:10px")
+			div.page-header(style="height:100%; max-width:100%; margin: 0 auto")
+				div.input-group
+					input#ticker.form-control(type="text", name="ticker", placeholder="Ticker")
+				div#chartContainer(style="height:100%; max-width:100%; margin: 0 auto")
 
 	script(src="javascripts/jquery-2.0.3.min.js")
 	script(src="javascripts/knockout-3.0.0.js")
 	script(src="javascripts/globalize.min.js")
 	script(src="javascripts/dx.chartjs.js")
+	script(src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
 	script(src="javascripts/pricechart.js")

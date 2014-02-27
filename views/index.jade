@@ -3,8 +3,11 @@ html(lang="en")
 	head
 	body
 		div
-			form(action='/pricechart',method='post')
-				key Ticker
-					input(type="text", name="ticker")
+			input#ticker(type="text", name="ticker")
+			div#chartContainer(style="height:80%; max-width:80%; margin: 0 auto")
 
-				input(type="submit", value="Submit")
+	script(src="javascripts/jquery-2.0.3.min.js")
+	script(src="javascripts/knockout-3.0.0.js")
+	script(src="javascripts/globalize.min.js")
+	script(src="javascripts/dx.chartjs.js")
+	script(src="javascripts/pricechart.js")

@@ -38,7 +38,8 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 
-app.post("/pricechart", function(request, response) {
+app.post("/pricechart", function(req, res) {
+	console.log(req.body);
     function getJsonHistoricalData(ticker, callback) {
 		function getQueryString(ticker, from, to) {
 			var requestFormat = util.format('http://ichart.finance.yahoo.com/table.csv?s=%s&d=%s&e=%s&f=%s&g=d&a=%s&b=%s&c=%s&ignore=.csv',
@@ -63,8 +64,8 @@ app.post("/pricechart", function(request, response) {
 				.to
 				.array(function (data) {
 					var mapped = _.map(data, function(row) { 
-						var day = 
-						{ 
+						var day =
+						{
 							date: row[0], 
 							open: row[1], 
 							high: row[2], 
@@ -82,11 +83,10 @@ app.post("/pricechart", function(request, response) {
 		});
 	};
 
-	console.log(request.body);
-	// var requestTicker = url.parse(req.url,true).query.ticker;
-	// getJsonHistoricalData(requestTicker, function(data) {
- //  		response.json(data, 200);
-	// });
+	getJsonHistoricalData(req.body.ticker, function(data) {
+		console.log(JSON.stringify(data))
+  		res.send(JSON.stringify(data));
+	});
   });
 
 http.createServer(app).listen(app.get('port'), function(){
